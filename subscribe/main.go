@@ -61,6 +61,7 @@ func (s *subscription) serve(ctx context.Context, freq int) {
 
 			s.updates <- result.item
 		case <-ctx.Done():
+			close(s.updates)
 			return
 		}
 	}
